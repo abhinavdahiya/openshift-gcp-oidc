@@ -49,14 +49,9 @@ resource "google_storage_bucket_object" "keys_json" {
   ]
 }
 
-
-data "google_iam_workload_identity_pool" "pool" {
-  workload_identity_pool_id = var.identity_pool
-}
-
 resource "google_iam_workload_identity_pool_provider" "oidc" {
   provider                           = google-beta
-  workload_identity_pool_id          = data.google_iam_workload_identity_pool.pool.workload_identity_pool_id
+  workload_identity_pool_id          = var.identity_pool
   workload_identity_pool_provider_id = "${var.name}-oidc"
 
   attribute_mapping = {

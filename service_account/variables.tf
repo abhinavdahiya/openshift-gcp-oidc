@@ -7,7 +7,7 @@ variable identity_pool {
 }
 
 variable "iam_namespace" {
-    type = string
+  type = string
 }
 
 variable service_accounts {
@@ -23,8 +23,8 @@ variable bindings {
 
 variable secret {
   type = object({
-    namespace      = string
-    name           = string
-    sts_token_path = string
+    namespace  = string
+    name       = string
+    token_path = string
   })
 }
