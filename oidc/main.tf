@@ -55,9 +55,7 @@ resource "google_iam_workload_identity_pool_provider" "oidc" {
   workload_identity_pool_provider_id = "${var.name}-oidc"
 
   attribute_mapping = {
-    "google.subject"             = "\"${var.name}::\" + assertion['kubernetes.io'].namespace + \"::\" + assertion['kubernetes.io'].serviceaccount.name"
-    "attribute.k8s_namespace"    = "assertion['kubernetes.io'].namespace"
-    "attribute.k8s_sa_namespace" = "assertion['kubernetes.io'].serviceaccount.name"
+    "google.subject" = "\"${var.name}.svc.id.openshift[\" + assertion['kubernetes.io'].namespace + \"/\" + assertion['kubernetes.io'].serviceaccount.name + \"]\""
   }
 
   oidc {
